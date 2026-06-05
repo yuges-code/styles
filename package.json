@@ -1,15 +1,50 @@
 {
-  "name": "style",
-  "private": true,
+  "name": "@yuges/styles",
+  "description": "Styles Library for Web Apps.",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Georgy",
+    "nickname": "goshasafonov",
+    "email": "goshasafonov@yandex.ru",
+    "github": "https://github.com/goshasafonov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuges-code/styles.git"
+  },
+  "bin": {
+    "scan": "./dist/scripts/scan.js"
+  },
+  "main": "./dist/styles.cjs",
+  "module": "./dist/styles.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/styles.js",
+      "require": "./dist/styles.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scan": "node ./scripts/scan.ts",
+    "parse": "node ./dist/scripts/parse.js"
   },
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "typescript": "~6.0.2",
     "vite": "^8.0.4"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.3",
+    "glob": "^13.0.6"
   }
 }

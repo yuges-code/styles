@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+import fs from 'fs';
+import path from 'path';
+import fg from 'fast-glob';
+import conf from '../styles.config.ts';
+import { createRequire } from 'module';
+import extractor from '../src/extractor/';
+
+const require = createRequire(import.meta.url);
+
+const paths = {
+    config: path.resolve(process.cwd(), 'styles.config.ts'),
+};
+
+const config = fs.existsSync(paths.config)
+    ? require(paths.config)?.default
+    : conf;
+
+
+function scan() {
+    const { content = [], ignore = [], safelist = [] } = config;
+
+    const files = fg.sync(content, { absolute: true, ignore: ignore });
+
+    const foundClasses = new Set();
+
+    for (const file of files) {
+        const type = path.extname(file).slice(1);
+        const content = fs.readFileSync(file, 'utf8');
+
+        extractor.extract(content, type).forEach(cls => foundClasses.add(cls));
+    }
+
+    for (const item of safelist) {
+        if (item instanceof RegExp) {
+            // Регулярку сложно "добавить" в Set, поэтому либо генерируем все возможные классы,
+            // либо оставляем для этапа генерации CSS (см. ниже)
+            // Для простоты пока сохраним regex в отдельный массив
+            if (!config._regexSafelist) config._regexSafelist = [];
+            config._regexSafelist.push(item);
+        } else {
+            foundClasses.add(item);
+        }
+    }
+
+    return { classes: foundClasses, regexSafelist: config._regexSafelist || [] };
+}
+
+scan();
