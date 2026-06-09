@@ -6,5 +6,6 @@ export default class HTMLElementOpeningTagAttributeQuoteToken extends AbstractPa
         start: (symbol: string) => /["']/.test(symbol),
         final: (symbol: string) => /[^"']/.test(symbol),
         symbol: (symbol: string) => /["']/.test(symbol),
+        length: () => 1,
     });
 };

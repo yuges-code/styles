@@ -4,31 +4,94 @@ import Parentable from "../traits/Parentable";
 import Positionable from "../traits/Positionable";
 import AbstractParserPattern from "./AbstractParserPattern";
 
+interface Rules {
+    start: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T,
+    ) => boolean,
+    final: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T
+    ) => boolean,
+    symbol: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T
+    ) => boolean,
+    length?: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T
+    ) => undefined | number,
+    lexeme?: <T extends AbstractParserPattern>(
+        symbol: string,
+        content: string,
+        position: number,
+        parent: T
+    ) => string | string[]
+};
+
 export default class AbstractParserToken extends Arrayable(Parentable(Positionable(class {})))
 {
     static name: string;
 
-    lexeme: string | undefined;
+    lexeme = undefined as string | undefined;
 
-    properties()
+    length = () => this.lexeme?.length || 0;
+
+    properties = () => [
+        'lexeme'
+    ];
+
+    concat(symbol: string)
     {
-        return ['lexeme'];
+        return this.lexeme === undefined ? symbol : this.lexeme + symbol;
     }
 
     setSymbol(symbol: string) {
-        this.lexeme = this.lexeme === undefined ? symbol : this.lexeme + symbol;
+        this.lexeme = this.concat(symbol);
 
         return this;
     };
 
-    rules()
-    {
-        return {
-            start: (symbol: string, content: string, position: number) => true,
-            final: (symbol: string, content: string, position: number) => true,
-            symbol: (symbol: string, content: string, position: number) => true,
-        };
-    };
+    rules = (): Rules => ({
+        start: (
+            symbol: string,
+            content: string,
+            position: number,
+            parent: AbstractParserPattern
+        ) => true,
+        final: (
+            symbol: string,
+            content: string,
+            position: number,
+            parent: AbstractParserPattern
+        ) => true,
+        symbol: (
+            symbol: string,
+            content: string,
+            position: number,
+            parent: AbstractParserPattern
+        ) => true,
+        length: (
+            symbol: string,
+            content: string,
+            position: number,
+            parent: AbstractParserPattern
+        ): undefined | number => undefined,
+        lexeme: (
+            symbol: string,
+            content: string,
+            position: number,
+            parent: AbstractParserPattern
+        ) => [],
+    });
 
     static rules()
     {
@@ -53,20 +116,34 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
 
         const rules = instance.rules();
 
-        if (! rules.start(content[position], content, position)) {
+        if (! rules.start(content[position], content, position, parent)) {
             return {
                 token: undefined,
                 position: position,
             };
         }
 
+        const lexeme = rules.lexeme?.(content[position], content, position, parent);
+
         position = read(content, position, (content, position) => {
-            if (rules.final(content[position], content, position)) {
+            const length = rules.length?.(content[position], content, position, parent);
+
+            if (length != undefined && instance.length() === length) {
                 return false;
             }
 
-            if (! rules.symbol(content[position], content, position)) {
+            if (rules.final(content[position], content, position, parent)) {
+                return false;
+            }
+
+            if (! rules.symbol(content[position], content, position, parent)) {
                 throw new Error(`Illegal symbol ${content[position]}`);
+            }
+
+            if (lexeme && lexeme.length) {
+                if (! instance.lexemeStartsWith(lexeme, instance.concat(content[position]))) {
+                    return false;
+                }
             }
 
             instance
@@ -74,9 +151,28 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
                 .setPositionEnd(position);
         }, false);
 
+        if (lexeme && lexeme.length) {
+            if (! instance.lexemeIncludes(lexeme, instance.lexeme || '')) {
+                return {
+                    token: undefined,
+                    position: instance.position?.start || 0,
+                };
+            }
+        }
+
         return {
             token: instance,
             position: position,
         };
     };
+
+    lexemeStartsWith(lexeme: string | string[], str: string)
+    {
+        return Array.isArray(lexeme) ? lexeme.some((lexeme) => lexeme.startsWith(str)) : lexeme.startsWith(str);
+    }
+
+    lexemeIncludes(lexeme: string | string[], str: string)
+    {
+        return Array.isArray(lexeme) ? lexeme.includes(str) : lexeme === str;
+    }
 };

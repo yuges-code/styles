@@ -27,20 +27,26 @@ export default class HTMLElementTagAttributePattern extends AbstractParserPatter
             required: true,
             element: HTMLElementTagAttributeNameToken,
         }, {
+            skip: /[\s]/,
+            required: false,
+        }, {
             name: 'operator',
             required: false,
             element: HTMLElementTagAttributeOperatorToken,
+        }, {
+            skip: /[\s]/,
+            required: false,
         }, {
             name: 'openingQuote',
             required: false,
             element: HTMLElementOpeningTagAttributeQuoteToken,
         }, {
             name: 'value',
-            required: false,
+            required: () => this.operator != undefined,
             element: HTMLElementTagAttributeValueToken,
         }, {
             name: 'closingQuote',
-            required: false,
+            required: () => this.openingQuote != undefined,
             element: HTMLElementClosingTagAttributeQuoteToken,
         },
     ];

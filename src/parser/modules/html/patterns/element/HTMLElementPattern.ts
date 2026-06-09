@@ -24,11 +24,41 @@ export default class HTMLElementPattern extends AbstractParserPattern
         }, {
             name: 'children',
             required: false,
+            disabled: () => {
+                const name = this.openingTag?.name?.lexeme?.toLowerCase();
+
+                return name ? this.singles().includes(name) : false;
+            },
             element: HTMLNodeCollection,
         }, {
             name: 'closingTag',
-            required: false,
+            required: () => {
+                const name = this.openingTag?.name?.lexeme?.toLowerCase();
+
+                return name ? !this.singles().includes(name) : false;
+            },
             element: HTMLElementClosingTagPattern,
         },
+    ];
+
+    singles = () => [
+        'hr',
+        'br',
+        'img',
+        'wbr',
+        'col',
+        'meta',
+        'link',
+        'base',
+        'area',
+        'input',
+        'param',
+        'track',
+        'embed',
+        'source',
+        'keygen',
+        'command',
+        'menuitem',
+        '!doctype',
     ];
 };

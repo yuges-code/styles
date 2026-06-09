@@ -18,13 +18,12 @@ import parser from "../src/parser/";
 // `;
 const content =
 `
-    <div lol="kek" class="d-flex" >
+    <div lol=="kek" class="d-flex" lol=kek>
         <a href="kek.com"></a>
     </div>
-    hjkjgkjk
-    <div>
-        kek
-    </div>
+    <!-- фывфыыфаыв -->
+    <img/>
+    lolkek
 `;
 const parsed = parser.parse(content, 'html');
 

@@ -17,14 +17,15 @@ export default function Patternable<T extends Constructor>(base: T)
         {
             return [] as ({
                 name: string,
-                required: boolean,
+                required: boolean | (() => boolean),
+                disabled?: boolean | (() => boolean),
                 element:
                     typeof AbstractParserToken |
                     typeof AbstractParserPattern |
                     typeof AbstractParserPatternCollection,
             } | {
                 skip: RegExp,
-                required: boolean,
+                required: boolean | (() => boolean),
             })[];
         };
 
@@ -39,7 +40,11 @@ export default function Patternable<T extends Constructor>(base: T)
             parent: ParserRoot | AbstractParserPattern
         )
         {
-            const items = this.pattern();
+            const instance = new this()
+                .setParent(parent)
+                .setPosition(position);
+
+            const items = instance.pattern();
 
             if (!items || !Array.isArray(items) || !items.length) {
                 return {
@@ -48,12 +53,16 @@ export default function Patternable<T extends Constructor>(base: T)
                 };
             }
 
-            const instance = new this()
-                .setParent(parent)
-                .setPosition(position);
-
             for (let index = 0; index < items.length; index++) {
                 const item = items[index];
+
+                if ('disabled' in item && (
+                        typeof item.disabled === 'boolean' && item.disabled ||
+                        typeof item.disabled === 'function' && item.disabled()
+                    )
+                ) {
+                    continue;
+                }
 
                 if ('skip' in item) {
                     position = read(content, position, undefined, item.skip);
@@ -67,14 +76,16 @@ export default function Patternable<T extends Constructor>(base: T)
                     instance as any as AbstractParserPattern
                 );
 
-                console.log(result);
-
                 const element =
                     'token' in result ? result.token :
                     'pattern' in result ? result.pattern :
                     'collection' in result ? result.collection : undefined;
 
-                if (! element && item.required) {
+                if (! element && (
+                        (typeof item.required === 'boolean' && item.required) ||
+                        (typeof item.required === 'function' && item.required())
+                    )
+                ) {
                     return {
                         pattern: undefined,
                         position: instance.position?.start || 0,
