@@ -3,98 +3,139 @@
     {
       "children": [
         {
-          "children": [],
-          "openingTag": {
-            "name": {
-              "lexeme": "a"
-            },
-            "attributes": [
-              {
-                "name": {
-                  "lexeme": "href"
-                },
-                "value": {
-                  "lexeme": "kek.com"
-                },
-                "operator": {
-                  "lexeme": "="
-                },
+          "name": {
+            "lexeme": "a"
+          },
+          "keyword": {
+            "lexeme": "const"
+          },
+          "operator": {
+            "lexeme": "="
+          },
+          "expression": {
+            "left": {
+              "data": {
+                "values": [
+                  {
+                    "expression": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "1"
+                          },
+                          "openingQuote": {
+                            "lexeme": "'"
+                          },
+                          "closingQuote": {
+                            "lexeme": "'"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "2"
+                          },
+                          "openingQuote": {
+                            "lexeme": "'"
+                          },
+                          "closingQuote": {
+                            "lexeme": "'"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "4"
+                          },
+                          "openingQuote": {
+                            "lexeme": "'"
+                          },
+                          "closingQuote": {
+                            "lexeme": "'"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "5"
+                          },
+                          "openingQuote": {
+                            "lexeme": "'"
+                          },
+                          "closingQuote": {
+                            "lexeme": "'"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "7"
+                          },
+                          "openingQuote": {
+                            "lexeme": "'"
+                          },
+                          "closingQuote": {
+                            "lexeme": "'"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  }
+                ],
                 "openingQuote": {
-                  "lexeme": "\""
+                  "lexeme": "["
                 },
                 "closingQuote": {
-                  "lexeme": "\""
+                  "lexeme": "]"
                 }
               }
-            ],
-            "openingQuote": {
-              "lexeme": "<"
-            },
-            "closingQuote": {
-              "lexeme": ">"
             }
           },
-          "closingTag": {
-            "name": {
-              "lexeme": "a"
-            },
-            "openingQuote": {
-              "lexeme": "<"
-            },
-            "openingSlash": {
-              "lexeme": "/"
-            },
-            "closingQuote": {
-              "lexeme": ">"
-            }
+          "separator": {
+            "lexeme": ";"
           }
         }
       ],
       "openingTag": {
         "name": {
-          "lexeme": "div"
+          "lexeme": "script"
         },
-        "attributes": [
-          {
-            "name": {
-              "lexeme": "lol"
-            },
-            "value": {
-              "lexeme": "=\"kek\""
-            },
-            "operator": {
-              "lexeme": "="
-            }
-          },
-          {
-            "name": {
-              "lexeme": "class"
-            },
-            "value": {
-              "lexeme": "d-flex"
-            },
-            "operator": {
-              "lexeme": "="
-            },
-            "openingQuote": {
-              "lexeme": "\""
-            },
-            "closingQuote": {
-              "lexeme": "\""
-            }
-          },
-          {
-            "name": {
-              "lexeme": "lol"
-            },
-            "value": {
-              "lexeme": "kek"
-            },
-            "operator": {
-              "lexeme": "="
-            }
-          }
-        ],
+        "attributes": [],
         "openingQuote": {
           "lexeme": "<"
         },
@@ -104,7 +145,7 @@
       },
       "closingTag": {
         "name": {
-          "lexeme": "div"
+          "lexeme": "script"
         },
         "openingQuote": {
           "lexeme": "<"
@@ -115,39 +156,6 @@
         "closingQuote": {
           "lexeme": ">"
         }
-      }
-    },
-    {
-      "text": {
-        "lexeme": "фывфыыфаыв "
-      },
-      "openingQuote": {
-        "lexeme": "<!--"
-      },
-      "closingQuote": {
-        "lexeme": "-->"
-      }
-    },
-    {
-      "openingTag": {
-        "name": {
-          "lexeme": "img"
-        },
-        "attributes": [],
-        "openingQuote": {
-          "lexeme": "<"
-        },
-        "closingSlash": {
-          "lexeme": "/"
-        },
-        "closingQuote": {
-          "lexeme": ">"
-        }
-      }
-    },
-    {
-      "text": {
-        "lexeme": "lolkek\n"
       }
     }
   ]

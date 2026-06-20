@@ -9,6 +9,11 @@ import AbstractParserPatternCollection from "../abstracts/AbstractParserPatternC
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+type Element = 
+    typeof AbstractParserToken |
+    typeof AbstractParserPattern |
+    typeof AbstractParserPatternCollection
+
 export default function Patternable<T extends Constructor>(base: T)
 {
     return class extends Propertyable(Positionable(Parentable(base)))
@@ -19,10 +24,7 @@ export default function Patternable<T extends Constructor>(base: T)
                 name: string,
                 required: boolean | (() => boolean),
                 disabled?: boolean | (() => boolean),
-                element:
-                    typeof AbstractParserToken |
-                    typeof AbstractParserPattern |
-                    typeof AbstractParserPatternCollection,
+                element: Element | (() => Element),
             } | {
                 skip: RegExp,
                 required: boolean | (() => boolean),
@@ -70,11 +72,12 @@ export default function Patternable<T extends Constructor>(base: T)
                     continue;
                 }
 
-                const result = { position } = item.element.parse(
-                    content,
-                    position,
-                    instance as any as AbstractParserPattern
-                );
+                const result = { position } = (this.isClassConstructor(item.element) ? item.element : item.element())
+                    .parse(
+                        content,
+                        position,
+                        instance as any as AbstractParserPattern
+                    );
 
                 const element =
                     'token' in result ? result.token :
@@ -103,6 +106,21 @@ export default function Patternable<T extends Constructor>(base: T)
                 pattern: instance,
                 position: position,
             };
+        };
+
+        static isClassConstructor(value: any): value is Element
+        {
+            if (typeof value !== 'function') {
+                return false;
+            }
+
+            try {
+                value();
+
+                return false;
+            } catch (err) {
+                return true;
+            }
         };
     };
 };

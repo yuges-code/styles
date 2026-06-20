@@ -16,7 +16,13 @@ import parser from "../src/parser/";
 //     </section>
 //     <div></div>
 // `;
-const content =
+
+var test = 'adasd';
+var kek = 'klkl';
+
+var lol = test = kek = ('kek' + 'lol').toLowerCase();
+
+var content =
 `
     <div lol=="kek" class="d-flex" lol=kek>
         <a href="kek.com"></a>
@@ -24,10 +30,19 @@ const content =
     <!-- фывфыыфаыв -->
     <img/>
     lolkek
+    <script>
+        var lol = 'kek';
+    </script>
 `;
+
+content = `
+    <script>
+        const a = [ '1','2','4' , '5' ,'7', ];
+    </script>
+`;
+
 const parsed = parser.parse(content, 'html');
 
 console.log(parsed.root.children);
-
 
 fs.writeFileSync(path.resolve(process.cwd(), './parsed.json'), JSON.stringify(parsed.root.toArray(), undefined, '  '));

@@ -1,5 +1,6 @@
 
 import HTMLNodeCollection from "../../collections/HTMLNodeCollection";
+import JSNodeCollection from "../../../js/collections/JSNodeCollection";
 import HTMLElementOpeningTagPattern from "./tag/HTMLElementOpeningTagPattern";
 import HTMLElementClosingTagPattern from "./tag/HTMLElementClosingTagPattern";
 import AbstractParserPattern from "../../../../abstracts/AbstractParserPattern";
@@ -29,7 +30,11 @@ export default class HTMLElementPattern extends AbstractParserPattern
 
                 return name ? this.singles().includes(name) : false;
             },
-            element: HTMLNodeCollection,
+            element: () => {
+                const name = this.openingTag?.name?.lexeme?.toLowerCase();
+
+                return name === 'script' ? JSNodeCollection : HTMLNodeCollection;
+            },
         }, {
             name: 'closingTag',
             required: () => {
