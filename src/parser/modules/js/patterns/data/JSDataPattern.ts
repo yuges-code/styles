@@ -1,7 +1,11 @@
+import JSDataNullPattern from "./null/JSDataNullPattern";
 import JSDataArrayPattern from "./array/JSDataArrayPattern";
 import JSDataStringPattern from "./string/JSDataStringPattern";
 import JSDataNumberPattern from "./number/JSDataNumberPattern";
+import JSDataBooleanPattern from "./boolean/JSDataBooleanPattern";
+import JSDataUndefinedPattern from "./undefined/JSDataUndefinedPattern";
 import AbstractParserPattern from "../../../../abstracts/AbstractParserPattern";
+import JSDataObjectPattern from "./object/JSDataObjectPattern";
 
 export default class JSDataPattern extends AbstractParserPattern
 {
@@ -9,7 +13,11 @@ export default class JSDataPattern extends AbstractParserPattern
         JSDataStringPattern,
         JSDataNumberPattern,
         JSDataArrayPattern,
-        // Object
-        // Boolean
+        JSDataNullPattern,
+        JSDataBooleanPattern,
+        JSDataUndefinedPattern,
+        JSDataObjectPattern,
+        // Function
+        // Class
     ];
 };

@@ -20,8 +20,13 @@ export default class JSVariablePattern extends AbstractParserPattern
 
     pattern = () => [
         {
-            name: 'identifier',
+            name: 'data',
             required: false,
+            element: JSDataPattern,
+        }, {
+            name: 'identifier',
+            required: () => this.data === undefined,
+            disabled: () => this.data != undefined,
             element: JSVariableNameToken,
         }, {
             skip: /[\s]/,
@@ -29,13 +34,8 @@ export default class JSVariablePattern extends AbstractParserPattern
         }, {
             name: 'calling',
             required: false,
-            disabled: () => this.identifier === undefined,
+            disabled: () => this.data === undefined && this.identifier === undefined,
             element: JSExpressionCallingPattern,
-        }, {
-            name: 'data',
-            required: () => this.identifier === undefined,
-            disabled: () => this.identifier != undefined,
-            element: JSDataPattern,
         }, {
             skip: /[\s]/,
             required: false,

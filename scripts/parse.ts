@@ -17,11 +17,6 @@ import parser from "../src/parser/";
 //     <div></div>
 // `;
 
-var test = 'adasd';
-var kek = 'klkl';
-
-var lol = test = kek = ('kek' + 'lol').toLowerCase();
-
 var content =
 `
     <div lol=="kek" class="d-flex" lol=kek>
@@ -37,7 +32,12 @@ var content =
 
 content = `
     <script>
-        const a = [ '1','2','4' , '5' ,'7', ];
+        const a = {
+            1: 1,
+            'lol': 'kek',
+            null: undefined,
+            poxui: da
+        };
     </script>
 `;
 

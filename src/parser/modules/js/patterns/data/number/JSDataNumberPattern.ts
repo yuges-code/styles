@@ -1,6 +1,6 @@
 import AbstractParserPattern from "../../../../../abstracts/AbstractParserPattern";
-import JSDataNumberSeparatorToken from "../../../tokens/data/number/JSDataNumberSeparatorToken";
 import JSDataNumberValueToken from "../../../tokens/data/number/JSDataNumberValueToken";
+import JSDataNumberSeparatorToken from "../../../tokens/data/number/JSDataNumberSeparatorToken";
 
 export default class JSDataNumberPattern extends AbstractParserPattern
 {

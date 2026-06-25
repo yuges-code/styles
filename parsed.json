@@ -15,13 +15,52 @@
           "expression": {
             "left": {
               "data": {
+                "openingQuote": {
+                  "lexeme": "{"
+                },
                 "values": [
                   {
-                    "expression": {
+                    "key": {
+                      "integer": {
+                        "lexeme": "1"
+                      }
+                    },
+                    "separator": {
+                      "lexeme": ":"
+                    },
+                    "value": {
                       "left": {
                         "data": {
-                          "value": {
+                          "integer": {
                             "lexeme": "1"
+                          }
+                        }
+                      }
+                    },
+                    "operator": {
+                      "lexeme": ","
+                    }
+                  },
+                  {
+                    "key": {
+                      "value": {
+                        "lexeme": "lol"
+                      },
+                      "openingQuote": {
+                        "lexeme": "'"
+                      },
+                      "closingQuote": {
+                        "lexeme": "'"
+                      }
+                    },
+                    "separator": {
+                      "lexeme": ":"
+                    },
+                    "value": {
+                      "left": {
+                        "data": {
+                          "value": {
+                            "lexeme": "kek"
                           },
                           "openingQuote": {
                             "lexeme": "'"
@@ -37,17 +76,19 @@
                     }
                   },
                   {
-                    "expression": {
+                    "key": {
+                      "value": {
+                        "lexeme": "null"
+                      }
+                    },
+                    "separator": {
+                      "lexeme": ":"
+                    },
+                    "value": {
                       "left": {
                         "data": {
                           "value": {
-                            "lexeme": "2"
-                          },
-                          "openingQuote": {
-                            "lexeme": "'"
-                          },
-                          "closingQuote": {
-                            "lexeme": "'"
+                            "lexeme": "undefined"
                           }
                         }
                       }
@@ -57,71 +98,25 @@
                     }
                   },
                   {
-                    "expression": {
-                      "left": {
-                        "data": {
-                          "value": {
-                            "lexeme": "4"
-                          },
-                          "openingQuote": {
-                            "lexeme": "'"
-                          },
-                          "closingQuote": {
-                            "lexeme": "'"
-                          }
-                        }
+                    "key": {
+                      "identifier": {
+                        "lexeme": "poxui"
                       }
                     },
-                    "operator": {
-                      "lexeme": ","
-                    }
-                  },
-                  {
-                    "expression": {
+                    "separator": {
+                      "lexeme": ":"
+                    },
+                    "value": {
                       "left": {
-                        "data": {
-                          "value": {
-                            "lexeme": "5"
-                          },
-                          "openingQuote": {
-                            "lexeme": "'"
-                          },
-                          "closingQuote": {
-                            "lexeme": "'"
-                          }
+                        "identifier": {
+                          "lexeme": "da"
                         }
                       }
-                    },
-                    "operator": {
-                      "lexeme": ","
-                    }
-                  },
-                  {
-                    "expression": {
-                      "left": {
-                        "data": {
-                          "value": {
-                            "lexeme": "7"
-                          },
-                          "openingQuote": {
-                            "lexeme": "'"
-                          },
-                          "closingQuote": {
-                            "lexeme": "'"
-                          }
-                        }
-                      }
-                    },
-                    "operator": {
-                      "lexeme": ","
                     }
                   }
                 ],
-                "openingQuote": {
-                  "lexeme": "["
-                },
                 "closingQuote": {
-                  "lexeme": "]"
+                  "lexeme": "}"
                 }
               }
             }
