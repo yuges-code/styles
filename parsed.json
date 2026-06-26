@@ -3,126 +3,39 @@
     {
       "children": [
         {
-          "name": {
-            "lexeme": "a"
-          },
-          "keyword": {
-            "lexeme": "const"
-          },
-          "operator": {
-            "lexeme": "="
-          },
-          "expression": {
-            "left": {
-              "data": {
+          "left": {
+            "data": {
+              "keyword": {
+                "lexeme": "function"
+              },
+              "identifier": {
+                "lexeme": "lol"
+              },
+              "arguments": {
                 "openingQuote": {
-                  "lexeme": "{"
+                  "lexeme": "("
                 },
                 "values": [
                   {
-                    "key": {
-                      "integer": {
-                        "lexeme": "1"
-                      }
-                    },
-                    "separator": {
-                      "lexeme": ":"
-                    },
-                    "value": {
-                      "left": {
-                        "data": {
-                          "integer": {
-                            "lexeme": "1"
-                          }
-                        }
-                      }
-                    },
-                    "operator": {
-                      "lexeme": ","
-                    }
-                  },
-                  {
-                    "key": {
-                      "value": {
-                        "lexeme": "lol"
-                      },
-                      "openingQuote": {
-                        "lexeme": "'"
-                      },
-                      "closingQuote": {
-                        "lexeme": "'"
-                      }
-                    },
-                    "separator": {
-                      "lexeme": ":"
-                    },
-                    "value": {
-                      "left": {
-                        "data": {
-                          "value": {
-                            "lexeme": "kek"
-                          },
-                          "openingQuote": {
-                            "lexeme": "'"
-                          },
-                          "closingQuote": {
-                            "lexeme": "'"
-                          }
-                        }
-                      }
-                    },
-                    "operator": {
-                      "lexeme": ","
-                    }
-                  },
-                  {
-                    "key": {
-                      "value": {
-                        "lexeme": "null"
-                      }
-                    },
-                    "separator": {
-                      "lexeme": ":"
-                    },
-                    "value": {
-                      "left": {
-                        "data": {
-                          "value": {
-                            "lexeme": "undefined"
-                          }
-                        }
-                      }
-                    },
-                    "operator": {
-                      "lexeme": ","
-                    }
-                  },
-                  {
-                    "key": {
-                      "identifier": {
-                        "lexeme": "poxui"
-                      }
-                    },
-                    "separator": {
-                      "lexeme": ":"
-                    },
-                    "value": {
-                      "left": {
-                        "identifier": {
-                          "lexeme": "da"
-                        }
-                      }
+                    "identifier": {
+                      "lexeme": "kek"
                     }
                   }
                 ],
+                "closingQuote": {
+                  "lexeme": ")"
+                }
+              },
+              "body": {
+                "openingQuote": {
+                  "lexeme": "{"
+                },
+                "instructions": [],
                 "closingQuote": {
                   "lexeme": "}"
                 }
               }
             }
-          },
-          "separator": {
-            "lexeme": ";"
           }
         }
       ],

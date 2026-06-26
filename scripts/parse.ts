@@ -32,12 +32,7 @@ var content =
 
 content = `
     <script>
-        const a = {
-            1: 1,
-            'lol': 'kek',
-            null: undefined,
-            poxui: da
-        };
+        function lol(kek) {}
     </script>
 `;
 
