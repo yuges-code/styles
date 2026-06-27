@@ -3,38 +3,57 @@
     {
       "children": [
         {
-          "left": {
-            "data": {
-              "keyword": {
-                "lexeme": "function"
-              },
-              "identifier": {
-                "lexeme": "lol"
-              },
-              "arguments": {
-                "openingQuote": {
-                  "lexeme": "("
-                },
-                "values": [
-                  {
-                    "identifier": {
-                      "lexeme": "kek"
-                    }
+          "keyword": {
+            "lexeme": "while"
+          },
+          "condition": {
+            "openingQuote": {
+              "lexeme": "("
+            },
+            "expression": {
+              "left": {
+                "data": {
+                  "value": {
+                    "lexeme": "true"
                   }
-                ],
-                "closingQuote": {
-                  "lexeme": ")"
-                }
-              },
-              "body": {
-                "openingQuote": {
-                  "lexeme": "{"
-                },
-                "instructions": [],
-                "closingQuote": {
-                  "lexeme": "}"
                 }
               }
+            },
+            "closingQuote": {
+              "lexeme": ")"
+            }
+          },
+          "body": {
+            "openingQuote": {
+              "lexeme": "{"
+            },
+            "instructions": [
+              {
+                "left": {
+                  "data": {
+                    "integer": {
+                      "lexeme": "2"
+                    }
+                  }
+                },
+                "operator": {
+                  "operator": {
+                    "lexeme": "+"
+                  }
+                },
+                "right": {
+                  "left": {
+                    "data": {
+                      "integer": {
+                        "lexeme": "3"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "closingQuote": {
+              "lexeme": "}"
             }
           }
         }

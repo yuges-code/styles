@@ -32,7 +32,9 @@ var content =
 
 content = `
     <script>
-        function lol(kek) {}
+        while (true) {
+            2+3
+        }
     </script>
 `;
 
