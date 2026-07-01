@@ -4,6 +4,40 @@
       "children": [
         {
           "keyword": {
+            "lexeme": "import"
+          },
+          "identifiers": {
+            "openingQuote": {
+              "lexeme": "{"
+            },
+            "values": [
+              {
+                "identifier": {
+                  "lexeme": "lol"
+                }
+              }
+            ],
+            "closingQuote": {
+              "lexeme": "}"
+            }
+          },
+          "from": {
+            "lexeme": "from"
+          },
+          "source": {
+            "value": {
+              "lexeme": "kek"
+            },
+            "openingQuote": {
+              "lexeme": "'"
+            },
+            "closingQuote": {
+              "lexeme": "'"
+            }
+          }
+        },
+        {
+          "keyword": {
             "lexeme": "while"
           },
           "condition": {

@@ -9,6 +9,8 @@ export default class AbstractParserPatternCollection extends Arrayable(Positiona
 {
     items = [] as AbstractParserPattern[];
 
+    skip = (): RegExp | boolean => /\s/;
+
     push(...items: AbstractParserPattern[])
     {
         this.items.push(...items);
@@ -47,7 +49,7 @@ export default class AbstractParserPatternCollection extends Arrayable(Positiona
                     .setPositionEnd(result.pattern?.position?.end || 0);
 
                 return position;
-            });
+            }, instance.skip());
         }
 
         return {

@@ -3,7 +3,6 @@ import AbstractParserPattern from "../../../../../abstracts/AbstractParserPatter
 import JSVariableNameToken from "../../../tokens/variable/name/JSVariableNameToken";
 import JSVariableKeywordToken from "../../../tokens/variable/keyword/JSVariableKeywordToken";
 import JSOperatorAssignmentToken from "../../../tokens/operator/assignment/JSOperatorAssignmentToken";
-import JSInstructionSeparatorToken from "../../../tokens/instruction/separator/JSInstructionSeparatorToken";
 
 export default class JSExpressionDeclarationPattern extends AbstractParserPattern
 {
@@ -11,14 +10,12 @@ export default class JSExpressionDeclarationPattern extends AbstractParserPatter
     keyword = undefined as JSVariableKeywordToken | undefined;
     operator = undefined as JSOperatorAssignmentToken | undefined;
     expression = undefined as JSExpressionBinaryPattern | undefined;
-    separator = undefined as JSInstructionSeparatorToken | undefined;
 
     properties = () => [
         'name',
         'keyword',
         'operator',
         'expression',
-        'separator',
     ];
 
     pattern = () => [
@@ -48,13 +45,6 @@ export default class JSExpressionDeclarationPattern extends AbstractParserPatter
             required: () => this.operator != undefined,
             disabled: () => this.operator === undefined,
             element: JSExpressionBinaryPattern,
-        }, {
-            skip: /[\s]/,
-            required: false,
-        }, {
-            name: 'separator',
-            required: false,
-            element: JSInstructionSeparatorToken,
         },
     ];
 }

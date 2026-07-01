@@ -137,7 +137,10 @@ export default class AbstractParserToken extends Arrayable(Parentable(Positionab
             }
 
             if (! rules.symbol(content[position], content, position, parent)) {
-                throw new Error(`Illegal symbol ${content[position]}`);
+                throw new Error(`
+                    Illegal symbol ${content[position]}
+                    {position: ${position}, element: ${instance.constructor.name}}
+                `);
             }
 
             if (lexeme && lexeme.length) {

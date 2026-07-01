@@ -3,5 +3,7 @@ import AbstractParserPatternCollection from "../../../abstracts/AbstractParserPa
 
 export default class JSNodeCollection extends AbstractParserPatternCollection
 {
+    skip = () => /[\s;]/;
+
     pattern = () => JSNodePattern;
 };
