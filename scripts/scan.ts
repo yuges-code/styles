@@ -1,37 +1,36 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
-import path from 'path';
-import fg from 'fast-glob';
-import conf from '../styles.config.ts';
-import { createRequire } from 'module';
-import extractor from '../src/extractor/';
-
-const require = createRequire(import.meta.url);
-
-const paths = {
-    config: path.resolve(process.cwd(), 'styles.config.ts'),
-};
-
-const config = fs.existsSync(paths.config)
-    ? require(paths.config)?.default
-    : conf;
-
+import Reader from '../src/utils/Reader';
+import Writer from "../src/utils/Writer";
+import Config from "../src/config/Config";
+import Scanner from "../src/utils/Scanner";
+import Matcher from "../src/utils/Matcher";
+import Extractor from '../src/utils/Extractor';
+import Converter from "../src/utils/Converter";
+import Generator from "../src/utils/Generator";
 
 function scan() {
-    const { content = [], ignore = [] } = config;
+    const config = new Config();
+    const reader = new Reader(config);
+    const writer = new Writer(config);
+    const scanner = new Scanner(config);
+    const matcher = new Matcher(config);
+    const extractor = new Extractor(config);
+    const converter = new Converter(config);
+    const generator = new Generator(config);
 
-    const files = fg.sync(content, { absolute: true, ignore: ignore });
+    const files = scanner.scan();
 
-    const foundClasses = new Set();
+    reader
+        .setExtractor(extractor)
+        .read(files);
 
-    for (const file of files) {
-        const type = path.extname(file).slice(1);
-        const content = fs.readFileSync(file, 'utf8');
+    const converted = converter.convert(
+        reader.getLexemes()
+    );
+    const matched = matcher.match(converted);
 
-        extractor.extract(content, type).forEach(cls => foundClasses.add(cls));
-    }
-
+    writer.write(generator.generate(matched));
 }
 
 scan();

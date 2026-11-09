@@ -1,0 +1,10 @@
+.px-3 {
+  padding-left: calc(var(--spacing) * 3);
+  padding-right: calc(var(--spacing) * 3);
+};
+.mt-2 {
+  margin-top: calc(var(--spacing) * 2);
+};
+.d-flex {
+  display: flex;
+};

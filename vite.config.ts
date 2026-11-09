@@ -7,8 +7,7 @@ export default defineConfig({
     lib: {
       entry: [
         path.resolve(__dirname, 'src/main.ts'),
-        // path.resolve(__dirname, 'scripts/scan.ts'),
-        path.resolve(__dirname, 'scripts/parse.ts'),
+        path.resolve(__dirname, 'scripts/scan.ts'),
       ]
     },
     rollupOptions: {

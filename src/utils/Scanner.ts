@@ -13,10 +13,10 @@ export default class Scanner
     public scan()
     {
         return fg.sync(
-            this.config.source,
+            this.config.source.include,
             {
                 absolute: true,
-                ignore: this.config.ignore,
+                ignore: this.config.source.exclude,
             }
         );
     };

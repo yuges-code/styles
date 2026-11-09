@@ -3,14 +3,30 @@ import path from "path";
 import { createRequire } from 'module';
 import config from '../../styles.config.ts';
 import type { StylesConfig } from '../types/StylesConfig.ts';
+import type { ConfigGroupItems } from '../types/config/ConfigGroupItems.ts';
 
 export default class Config
 {
     private data: StylesConfig;
 
-    public source: string[] = [];
-    public ignore: (string)[] = [];
-    public safelist: (string | RegExp)[] = [];
+    public source = {
+        include: [] as string[],
+        exclude: [] as string[],
+    };
+    public output = {
+        name: '',
+        type: '',
+        path: '',
+        mode: 'split' as 'single' | 'split',
+    };
+    public classes = {
+        include: {} as ConfigGroupItems,
+        exclude: [] as (string | RegExp)[],
+
+        force: {
+            include: [] as (string)[],
+        },
+    };
 
     public constructor(file: string | null = null)
     {
@@ -34,8 +50,8 @@ export default class Config
     public distribute()
     {
         this.source = this.data.source;
-        this.ignore = this.data.ignore;
-        this.safelist = this.data.safelist;
+        this.output = this.data.output;
+        this.classes = this.data.classes;
     };
 
     public get()
